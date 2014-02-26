@@ -101,7 +101,9 @@ twit.verifyCredentials(function (err, data) {
     //console.log("err: "+err+" "+code)
   });
 });
-var serialPort = new SerialPort("/dev/ttyUSB0", {
+var SerialPort = serialport.SerialPort;
+
+var sp = new SerialPort("/dev/ttyUSB0", {
   baudrate: 115200,
   bufferSize: 1024,
   parser: serialport.parsers.readline("\n")
