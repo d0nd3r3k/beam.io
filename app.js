@@ -78,7 +78,7 @@ twit.verifyCredentials(function (err, data) {
 		      else {
 		      	tuwm.post("There you go! @"+name, image_path, function(err, response) {
 		        	if (err) console.log(err);
-		        		console.log("Posted!")
+		        		console.log(response)
 		      	});
 		      } 
 		    });
