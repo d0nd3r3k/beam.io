@@ -1,12 +1,42 @@
 {
-  "name": "application-name",
-  "version": "0.0.1",
-  "private": true,
+  "name": "Beam.io",
+  "version": "0.0.2",
+  "description":"",
+  "author": {
+    "name": "Donald Derek",
+    "email": "donaldderek.haddad@gmail.com"
+  },
+  "contributors": [
+    {
+      
+    },
+    {
+      "name": "Donald Derek",
+      "email": "donaldderek.haddad@gmail.com"
+    }
+  ],
+  "private": false,
   "scripts": {
     "start": "node app.js"
   },
+  "keywords": [
+    "RaspberryPi",
+    "RaspberryPi Camera",
+    "rPi",
+    "Twitter Bot",
+    "Remote Cam"
+  ],
   "dependencies": {
     "express": "3.3.6",
-    "jade": "*"
-  }
+    "jade": "*",
+    "socket.io":"0.9.x",
+    "request":"*",
+    "ntwitter":"*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DonaldDerek/Beam.io"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md"
 }
