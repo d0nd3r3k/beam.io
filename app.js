@@ -63,8 +63,8 @@ twit.verifyCredentials(function (err, data) {
     	console.log(data.text);	
 
     	if(data.text == "#BeamBotImage"){
-    		image_name = Number(new Date()) + ".jpg"; 	
-		    image_path = image_dir + image_name;
+    		var image_name = Number(new Date()) + ".jpg"; 	
+		    var image_path = image_dir + image_name;
 		    var name = data.screen_name;
 		    /*
 		     * @child 
