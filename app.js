@@ -18,6 +18,8 @@ var image_dir=path.join(__dirname, 'public/images/');
 var config = require('./config.js');
 var twitter = require('ntwitter');
 var twitter_update_with_media = require('./twitter_update_with_media.js');
+var SerialPort = require("serialport").SerialPort
+
 
 // all environments
 app.set('port', process.env.PORT || 8080);
@@ -99,7 +101,20 @@ twit.verifyCredentials(function (err, data) {
     //console.log("err: "+err+" "+code)
   });
 });
+var serialPort = new SerialPort("/dev/ttyUSB0", {
+  baudrate: 115200
+}, true); // this is the openImmediately flag [default is true]
 
+serialPort.open(function () {
+  console.log('open');
+  serialPort.on('data', function(data) {
+    console.log('data received: ' + data);
+  });
+  serialPort.write("ls\n", function(err, results) {
+    console.log('err ' + err);
+    console.log('results ' + results);
+  });
+});
 
 
 

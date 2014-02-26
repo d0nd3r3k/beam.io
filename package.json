@@ -31,7 +31,8 @@
     "jade": "*",
     "socket.io":"0.9.x",
     "request":"*",
-    "ntwitter":"*"
+    "ntwitter":"*",
+    "serialport":"*"
   },
   "repository": {
     "type": "git",
