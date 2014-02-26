@@ -107,8 +107,9 @@ var serialPort = new SerialPort("/dev/ttyUSB0", {
 }, true); // this is the openImmediately flag [default is true]
 
 serialPort.open(function () {
+  console.log('open');
   serialPort.on('data', function(data) {
-    console.log(data);
+    console.log(' ' + data);
   });
 });
 
