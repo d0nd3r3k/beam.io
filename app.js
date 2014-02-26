@@ -70,7 +70,7 @@ twit.verifyCredentials(function (err, data) {
     	if(data.text == "#BeamBotImage"){
     		var image_name = Number(new Date()) + ".jpg"; 	
 		    var image_path = image_dir + image_name;
-		    var name = data.screen_name;
+		    var name = data.user.screen_name;
 		    console.log(name);
 		    /*
 		     * @child 
