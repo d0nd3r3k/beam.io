@@ -103,8 +103,9 @@ twit.verifyCredentials(function (err, data) {
 });
 var serialPort = new SerialPort("/dev/ttyUSB0", {
   baudrate: 115200,
-  bufferSize: 1024
-}, true); // this is the openImmediately flag [default is true]
+  bufferSize: 1024,
+  parser: serialport.parsers.readline("\n")
+}, false); // this is the openImmediately flag [default is true]
 
 serialPort.open(function () {
   console.log('open');
