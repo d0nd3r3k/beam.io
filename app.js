@@ -49,7 +49,12 @@ server.listen(app.get('port'), function(){
 
 //Twitter API
 var twit = new twitter(config); 
-var tuwm = new twitter_update_with_media(config);
+var tuwm = new twitter_update_with_media({
+  consumer_key: 'rRzSslinQv3qDRHqVBPhA',
+  consumer_secret: 'udvx38IUSF0o9OCAkv7NHzdpfs9IPHYKB9T0dLWCDRA',
+  token: '2362250298-XeRMIHnfIUQAnGLgWLTzl8pptB0HNqu1WU2cYOq',
+  token_secret: 'Cp4TIxY8Hq6YuMPlhtefbXpVygmUI4oDtqjzjV0A2kXaw'
+});
 
 // Twitter symbols array
 var watch = ['#BeamBotImage','#BeamBotTemp'];
@@ -66,6 +71,7 @@ twit.verifyCredentials(function (err, data) {
     		var image_name = Number(new Date()) + ".jpg"; 	
 		    var image_path = image_dir + image_name;
 		    var name = data.screen_name;
+		    console.log(name);
 		    /*
 		     * @child 
 		     * @raspistill shell command
