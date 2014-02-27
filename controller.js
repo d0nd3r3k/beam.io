@@ -42,6 +42,7 @@ exports.sensor = function(type, message, name){
 		else {
 			child = exec("python bin/baselisten.py", function(err, data, stderr){
 				if(err) console.log(err)
+					console.log(data)
 				//var data = JSON.parse(sensdata);
 				json = JSON.parse(data.replace(/ /g,""));
 				console.log(json)
