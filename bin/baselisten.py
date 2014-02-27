@@ -13,7 +13,6 @@ data = {}
 while 'sensors' not in data:
     char = ser.read()
     msg += char
-    if char != ord
     if char == "{":
         nest_level += 1
     elif char == "}":
