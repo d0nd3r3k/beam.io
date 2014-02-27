@@ -3,7 +3,7 @@ var child;
 var path = require('path');
 var twitter_update_with_media = require('./twitter_update_with_media.js');
 var image_dir=path.join(__dirname, 'public/images/');
-var config = require('./config.js')['tuwm'];
+var config = require('./config.js')['tumw'];
 var tuwm = new twitter_update_with_media(config);
 
 /*
