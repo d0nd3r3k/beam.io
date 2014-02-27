@@ -40,17 +40,14 @@ exports.sensor = function(type, message, name){
 	child = exec("raspistill -o "+ image_path +" -w 640 -h 480", function (err, stdout, stderr) {
 		if(err) console.log(stderr);
 		else {
-
-			if (type == "temp") value = data.sensors.sht_temperature + " &deg;C";
-			if (type == "hum") value = data.sensors.sht_humidity + " %";
-			if (type == "illu") value = data.sensors.illuminance + " Lx";
-			if (type == "pressu") value = data.sensors.bmp_pressure + " Pa";
-
 			console.log(type);
 
 			child = exec("python bin/baselisten.py", function(err, stdout, stderr){
 				data = JSON.parse(stdout);
-				value = data.sensors.type;
+				if (type == "temp") value = data.sensors.sht_temperature + " &deg;C";
+				if (type == "hum") value = data.sensors.sht_humidity + " %";
+				if (type == "illu") value = data.sensors.illuminance + " Lx";
+				if (type == "pressu") value = data.sensors.bmp_pressure + " Pa";
 				message = message + ": " + value;
 				tuwm.post(message+" @"+name, image_path, function(err, response) {
 					if (err) console.log(err);
