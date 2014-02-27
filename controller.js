@@ -37,16 +37,16 @@ exports.cam = function(name){
 exports.sensor = function(type, message, name){
 	var image_name = Number(new Date()) + ".jpg";
 	var image_path = image_dir + image_name;
-	var data = "";
 	child = exec("raspistill -o "+ image_path +" -w 640 -h 480", function (err, stdout, stderr) {
 		if(err) console.log(stderr);
 		else {
 			child = exec("python bin/baselisten.py", function(err, stdout, stderr){
 				if(err) console.log(err)
 				console.log(stdout);	
-
-				data = JSON.parse(JSON.stringify(stdout));
-				
+				var jsonString = JSON.stringify(stdout);
+				console.log(jsonString);
+				var data = JSON.parse(jsonString);
+				console.log(data);
 				console.log(data.sensors.bmp_temperature);
 				if (type == "temp") value = data.sensors.sht_temperature + " &deg;C";
 				if (type == "hum") value = data.sensors.sht_humidity + " %";
