@@ -40,14 +40,11 @@ exports.sensor = function(type, message, name){
 	child = exec("raspistill -o "+ image_path +" -w 640 -h 480", function (err, stdout, stderr) {
 		if(err) console.log(stderr);
 		else {
-			child = exec("python bin/baselisten.py", function(err, sensdata, stderr){
+			child = exec("python bin/baselisten.py", function(err, data, stderr){
 				if(err) console.log(err)
-				
-
 				//var data = JSON.parse(sensdata);
-				var data = sensdata.replace(" ", "");
-				var jsond = JSON.parse(data);
-				console.log(jsond);
+				json = JSON.parse(data.replace(/ /g,""));
+				console.log(json)
 				//console.log(data.sensors.bmp_temperature);
 				/*if (type == "temp") value = data.sensors.sht_temperature + " &deg;C";
 				if (type == "hum") value = data.sensors.sht_humidity + " %";
