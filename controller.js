@@ -37,27 +37,26 @@ exports.cam = function(name){
 exports.sensor = function(type, message, name){
 	var image_name = Number(new Date()) + ".jpg";
 	var image_path = image_dir + image_name;
+	var data = "";
 	child = exec("raspistill -o "+ image_path +" -w 640 -h 480", function (err, stdout, stderr) {
 		if(err) console.log(stderr);
 		else {
-			child = exec("python bin/baselisten.py", function(err, data, stderr){
+			child = exec("python bin/baselisten.py", function(err, stdout, stderr){
 				if(err) console.log(err)
-					console.log(data)
-				//var data = JSON.parse(sensdata);
-				json = JSON.parse(data.replace(/ /g,""));
-				console.log(json)
-				//console.log(data.sensors.bmp_temperature);
-				/*if (type == "temp") value = data.sensors.sht_temperature + " &deg;C";
+					
+				data = JSON.parse(stdout);
+				console.log(data.sensors.bmp_temperature);
+				if (type == "temp") value = data.sensors.sht_temperature + " &deg;C";
 				if (type == "hum") value = data.sensors.sht_humidity + " %";
 				if (type == "illu") value = data.sensors.illuminance + " Lx";
-				if (type == "pressu") value = data.sensors.bmp_pressure + " Pa";*/
+				if (type == "pressu") value = data.sensors.bmp_pressure + " Pa";
 				
-				//message = message + ": " + value;
-				//console.log(message);
-				/*tuwm.post(message+" @"+name, image_path, function(err, response) {
+				message = message + ": " + value;
+				console.log(message);
+				tuwm.post(message+" @"+name, image_path, function(err, response) {
 					if (err) console.log(err);
 					console.log(response)
-				});*/
+				});
 			})
 		} 
 	});
