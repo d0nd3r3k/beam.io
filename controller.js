@@ -45,7 +45,9 @@ exports.sensor = function(type, message, name){
 				
 
 				//var data = JSON.parse(sensdata);
-				console.log(sensdata.toString("hex"));
+				var data = sensdata.replace(" ", "");
+				var jsond = JSON.parse(data);
+				console.log(jsond);
 				//console.log(data.sensors.bmp_temperature);
 				/*if (type == "temp") value = data.sensors.sht_temperature + " &deg;C";
 				if (type == "hum") value = data.sensors.sht_humidity + " %";
