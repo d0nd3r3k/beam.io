@@ -44,7 +44,7 @@ exports.sensor = function(type, message, name){
 
 			child = exec("python bin/baselisten.py", function(err, sensdata, stderr){
 				if(err) console.log(err)
-				console.log(sensdata)	
+				console.log(sensdata.sensors.sht_temperature)	
 				data = JSON.parse(sensdata);
 				console.log(data.sensors.sht_temperature);
 				/*if (type == "temp") value = data.sensors.sht_temperature + " &deg;C";
