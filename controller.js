@@ -5,7 +5,7 @@ var twitter_update_with_media = require('./twitter_update_with_media.js');
 var image_dir=path.join(__dirname, 'public/images/');
 var config = require('./config.js')['tumw'];
 var tuwm = new twitter_update_with_media(config);
-
+var fs = require('fs');
 /*
  * @cam 
  * @param name twitter handler
@@ -42,11 +42,11 @@ exports.sensor = function(type, message, name){
 		else {
 			child = exec("python bin/baselisten.py", function(err, sensdata, stderr){
 				if(err) console.log(err)
-				console.log(sensdata)
+				
 
-				var data = JSON.parse(sensdata);
-				console.log(data);
-				console.log(data.sensors.bmp_temperature);
+				//var data = JSON.parse(sensdata);
+				console.log(sensdata.toString("hex"));
+				//console.log(data.sensors.bmp_temperature);
 				/*if (type == "temp") value = data.sensors.sht_temperature + " &deg;C";
 				if (type == "hum") value = data.sensors.sht_humidity + " %";
 				if (type == "illu") value = data.sensors.illuminance + " Lx";
