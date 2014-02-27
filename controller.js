@@ -47,7 +47,8 @@ exports.sensor = function(type, message, name){
 				console.log(sensdata)
 				console.log("foobar");	
 				data = JSON.parse(sensdata);
-				console.log(data.sensors.sht_temperature);
+				console.log(data);
+				console.log(data.sensors.bmp_temperature);
 				/*if (type == "temp") value = data.sensors.sht_temperature + " &deg;C";
 				if (type == "hum") value = data.sensors.sht_humidity + " %";
 				if (type == "illu") value = data.sensors.illuminance + " Lx";
