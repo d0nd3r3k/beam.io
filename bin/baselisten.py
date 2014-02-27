@@ -1,4 +1,3 @@
-import json
 import serial
 
 mac = '/dev/tty.usbserial-A603GDYK'
