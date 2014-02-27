@@ -9,17 +9,14 @@ var path = require('path');
 
 var app = express();
 var server = require('http').createServer(app);
-var io = require('socket.io').listen(server);
 
 var sys = require('sys');
 var exec = require('child_process').exec;
 var child;
-var image_dir=path.join(__dirname, 'public/images/');
-var config = require('./config.js');
+var config = require('./config.js')['ntwitter'];
 var twitter = require('ntwitter');
+var controller = require('./controller.js');
 var twitter_update_with_media = require('./twitter_update_with_media.js');
-var SerialPort = require("serialport").SerialPort
-
 
 // all environments
 app.set('port', process.env.PORT || 8080);
@@ -32,89 +29,57 @@ app.use(express.urlencoded());
 app.use(express.methodOverride());
 app.use(app.router);
 app.use(express.static(path.join(__dirname, 'public')));
-io.set('log level', 1);
-
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
-
-//Routing
-app.get('/', function (req, res) {
-  res.render('index', { title: 'Beam.io' });
-});
 
 server.listen(app.get('port'), function(){
-  console.log('Express and Socket.io server listening on port ' + app.get('port'));
+  console.log('Express server listening on port ' + app.get('port'));
 });
 
 
-//Twitter API
+//Twitter API Config
 var twit = new twitter(config); 
-var tuwm = new twitter_update_with_media({
-  consumer_key: 'rRzSslinQv3qDRHqVBPhA',
-  consumer_secret: 'udvx38IUSF0o9OCAkv7NHzdpfs9IPHYKB9T0dLWCDRA',
-  token: '2362250298-XeRMIHnfIUQAnGLgWLTzl8pptB0HNqu1WU2cYOq',
-  token_secret: 'Cp4TIxY8Hq6YuMPlhtefbXpVygmUI4oDtqjzjV0A2kXaw'
-});
 
 // Twitter symbols array
-var watch = ['#BeamBotImage','#BeamBotTemp'];
+var watch = ['#BeamIOCam','#BeamIOTemp','#BeamIOHumidity','#BeamIOIlluminance','#BeamIOPressure'];
  
 twit.verifyCredentials(function (err, data) {
     if(err) console.log(err);
 })
 .stream('user', {track:watch}, function(stream) {
-  stream.on('data', function (data) {
-    if (data.text !== undefined) {
-    	console.log(data.text);	
+	stream.on('data', function (data) {
+		
+		if (data.text !== undefined) {
 
-    	if(data.text == "#BeamBotImage"){
-    		var image_name = Number(new Date()) + ".jpg"; 	
-		    var image_path = image_dir + image_name;
-		    var name = data.user.screen_name;
-		    console.log(name);
-		    /*
-		     * @child 
-		     * @raspistill shell command
-		     * @args -o image_path
-		     * @args -w image width
-		     * @args -h image height
-		     */
-		  	child = exec("raspistill -o "+ image_path +" -w 640 -h 480", function (err, stdout, stderr) {
-		      if(err) console.log(stderr);
-		      else {
-		      	tuwm.post("There you go! @"+name, image_path, function(err, response) {
-		        	if (err) console.log(err);
-		        		console.log(response)
-		      	});
-		      } 
-		    });
-    	}
-    	if(data.text == "#BeamBotTemp"){
-    		console.log("Temp");
-    	}
-    }
-    
-  });
-  stream.on('error', function (err, code) {
-    //console.log("err: "+err+" "+code)
-  });
+			var name = data.user.screen_name;
+			var hashtags = data.entities.hashtags;
+			var choice = 0;
+
+			console.log(name);
+			console.log(hashtags)
+
+			for(var i=0,l=hashtags.length;i<l;i++){
+				if(hashtags[i].text.toLowerCase() == 'beamiocam') choice++;
+				else if(hashtags[i].text.toLowerCase() == 'beamiotemp') choice += 3;
+				else if(hashtags[i].text.toLowerCase() == 'beamiohumidity') choice += 5;
+				else if(hashtags[i].text.toLowerCase() == 'beamioilluminance') choice += 7;
+				else if(hashtags[i].text.toLowerCase() == 'beamiopressure') choice += 11;
+			}
+
+			console.log(choice)
+
+			if(choice == 1 ) controller.cam(name)
+			else if (choice == 4 || choice == 3) 
+				controller.sensor('temp','The temperature is',name)
+			else if (choice == 6 || choice == 5) 
+				controller.sensor('hum','The humidity is',name)
+			else if (choice == 8 || choice == 7) 
+				controller.sensor('illu','The illuminance is',name)
+			else if (choice == 12 || choice == 11) 
+				controller.sensor('pressu','The pressure is',name)
+		}
+	});
+
+	stream.on('error', function (err, code) {
+		console.log("err: "+err+" "+code)
+	});
 });
-
-var sp = new SerialPort("/dev/ttyUSB0", {
-  baudrate: 115200,
-  bufferSize: 1024,
-  parser: SerialPort.parsers.readline("\n")
-}, false); // this is the openImmediately flag [default is true]
-
-serialPort.open(function () {
-  console.log('open');
-  serialPort.on('data', function(data) {
-    console.log(' ' + data);
-  });
-});
-
-
-
 
