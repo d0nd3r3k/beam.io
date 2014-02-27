@@ -46,13 +46,7 @@ exports.sensor = function(type, message, name){
 				console.log(stdout);	
 				data = JSON.stringify(stdout);
 				var data1 = JSON.parse(data);
-				/*data = {"sensors": {
-					    "sht_temperature":  24.34,
-					    "sht_humidity":  46.4,
-					    "illuminance": 0,
-					    "bmp_pressure":  1016.16,
-					    "bmp_temperature":  24.3
-					}}
+				
 				console.log(data.sensors.bmp_temperature);
 				if (type == "temp") value = data.sensors.sht_temperature + " &deg;C";
 				if (type == "hum") value = data.sensors.sht_humidity + " %";
@@ -64,7 +58,7 @@ exports.sensor = function(type, message, name){
 				tuwm.post(message+" @"+name, image_path, function(err, response) {
 					if (err) console.log(err);
 					console.log(response)
-				});*/
+				});
 			})
 		} 
 	});
