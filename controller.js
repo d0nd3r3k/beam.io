@@ -44,8 +44,9 @@ exports.sensor = function(type, message, name){
 			child = exec("python bin/baselisten.py", function(err, stdout, stderr){
 				if(err) console.log(err)
 				console.log(stdout);	
-				//data = JSON.parse(stdout);
-				data = {"sensors": {
+				data = JSON.stringify(stdout);
+				var data1 = JSON.parse(data);
+				/*data = {"sensors": {
 					    "sht_temperature":  24.34,
 					    "sht_humidity":  46.4,
 					    "illuminance": 0,
@@ -63,7 +64,7 @@ exports.sensor = function(type, message, name){
 				tuwm.post(message+" @"+name, image_path, function(err, response) {
 					if (err) console.log(err);
 					console.log(response)
-				});
+				});*/
 			})
 		} 
 	});

@@ -20,4 +20,4 @@ while 'sensors' not in data:
             done = True
             data = msg
 
-print data.strip()
+print data.replace('"', '').strip()
