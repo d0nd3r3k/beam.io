@@ -45,7 +45,7 @@ exports.sensor = function(type, message, name){
 			child = exec("python bin/baselisten.py", function(err, sensdata, stderr){
 				if(err) console.log(err)
 				console.log(sensdata)	
-				var data = JSON.parse(sensdata);
+				data = JSON.parse(sensdata);
 				if (type == "temp") value = data.sensors.sht_temperature + " &deg;C";
 				if (type == "hum") value = data.sensors.sht_humidity + " %";
 				if (type == "illu") value = data.sensors.illuminance + " Lx";
