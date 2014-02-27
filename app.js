@@ -67,7 +67,7 @@ twit.verifyCredentials(function (err, data) {
 			console.log(choice)
 
 			if(choice == 1 ) controller.cam(name)
-			else if (choice == 4 || choice == 3) 
+			else if (choice == 4 || choice ==  3) 
 				controller.sensor('temp','The temperature is',name)
 			else if (choice == 6 || choice == 5) 
 				controller.sensor('hum','The humidity is',name)
