@@ -1,5 +1,5 @@
 {
-  "name": "Beam.io",
+  "name": "beambotio",
   "version": "0.0.2",
   "description":"Controll Raspberry Pi connected sensors via Tweets and Hashtags. Developed at the MIT Media Lab Workshop",
   "author": {
