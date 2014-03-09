@@ -1,6 +1,6 @@
 {
   "name": "Beam.io",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description":"Controll Raspberry Pi connected sensors via Tweets and Hashtags. Developed at the MIT Media Lab Workshop",
   "author": {
     "name": "Donald Derek",
@@ -37,7 +37,6 @@
     "sensors"
   ],
   "dependencies": {
-    "express": "3.3.6",
     "request":"*",
     "ntwitter":"*"
   },

@@ -6,6 +6,7 @@ var image_dir=path.join(__dirname, 'public/images/');
 var config = require('./config.js')['tumw'];
 var tuwm = new twitter_update_with_media(config);
 var fs = require('fs');
+
 /*
  * @cam 
  * @param name twitter handler

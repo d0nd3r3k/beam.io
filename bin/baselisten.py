@@ -1,3 +1,7 @@
+# Author: Spencer Russell
+# Email: spencer.f.russell@gmail.com
+# Github: ssfrr
+# Description: Parse the JSON data sent by the Tidmarsh sensor node via serial ports.
 
 import serial
 
@@ -12,7 +16,7 @@ data = {}
 
 while 'sensors' not in data:
     char = ser.read()
-    if ord(char) ==0 
+    if ord(char) > 127 or ord(char) == 0: 
     	continue
     msg += char
     if char == "{":
