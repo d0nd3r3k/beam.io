@@ -12,7 +12,7 @@ var controller = require('./controller.js');
 var twit = new twitter(config); 
 
 // Twitter symbols array
-var watch = ['#BeamIOCam','#BeamIOTemp','#BeamIOHumidity','#BeamIOIlluminance','#BeamIOPressure'];
+var watch = ['#BeamCam','#BeamTemp','#BeamPressure','#BeamAlt','#BeamRealAlt'];
  
 twit.verifyCredentials(function (err, data) {
     if(err) console.log(err);
