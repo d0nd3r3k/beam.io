@@ -27,28 +27,29 @@ twit.verifyCredentials(function (err, data) {
 			var hashtags = data.entities.hashtags;
 			var options = { cam: false,
 							temp: false,
-							humidity: false,
-							illuminance: false,
-							pressure: false}
+							pressure: false,
+							alt: false,
+							real_alt: false}
 
 			for(var i=0,l=hashtags.length;i<l;i++){
 				var hashtag = hashtags[i].text.toLowerCase();
-				if( hashtag == 'beamiocam') options.cam = true;
-				if( hashtag == 'beamiotemp') options.temp = true;
-				if( hashtag == 'beamiohumidity') options.temp = true;
-				if( hashtag == 'beamioilluminance') options.temp = true;
-				if( hashtag == 'beamiopressure') options.temp = true;
+				if( hashtag == 'beamcam') options.cam = true;
+				if( hashtag == 'beamtemp') options.temp = true;
+				if( hashtag == 'beampressure') options.pressure = true;
+				if( hashtag == 'beamalt') options.alt = true;
+				if( hashtag == 'beamrealalt') options.real_alt = true;
+				
 			}
 
 			if(options.cam) controller.cam(name)
 			else if (options.temp) 
 				controller.sensor('temp','The temperature is',name)
-			else if (options.humidity) 
-				controller.sensor('hum','The humidity is',name)
-			else if (options.illuminance) 
-				controller.sensor('illu','The illuminance is',name)
 			else if (options.pressure) 
-				controller.sensor('pressu','The pressure is',name)
+				controller.sensor('pressure','The pressure is',name)
+			else if (options.alt) 
+				controller.sensor('alt','The altitude is ',name)
+			else if (options.real_alt) 
+				controller.sensor('real_alt','The real altitude is ',name)
 		}
 	});
 

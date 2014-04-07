@@ -30,6 +30,7 @@ exports.cam = function(name){
 /*
  * @sensor
  * @type Tidmarsh Sensor Node v2.0, MIT Media Lab
+ * @type Beam.io Prototype Sensor Node, PiLabs
  * @message The tweet 
  * @param name twitter handler
  * @exec raspistill, tweet image
@@ -43,17 +44,25 @@ exports.sensor = function(type, message, name){
 		else {
 			child = exec("python bin/baselisten.py", function(err, stdout, stderr){
 				if(err) console.log(err)
-				console.log(stdout);	
+				//console.log(stdout);	
 				var jsonString = JSON.stringify(stdout);
-				console.log(jsonString);
+				//console.log(jsonString);
 				var data = JSON.parse(jsonString);
-				console.log(data);
-				console.log(data.sensors.bmp_temperature);
+				data = data.data;
+				
+				/* Tidmarsh Sensor Node - MIT Media Lab
 				if (type == "temp") value = data.sensors.sht_temperature + " &deg;C";
 				if (type == "hum") value = data.sensors.sht_humidity + " %";
 				if (type == "illu") value = data.sensors.illuminance + " Lx";
-				if (type == "pressu") value = data.sensors.bmp_pressure + " Pa";
+				if (type == "pressu") value = data.sensors.bmp_pressure + " Pa";*/
 				
+				/* Pilabs Sensor Prototype*/
+				if (type == "temp") value = data.beam_temp + " *C";
+				if (type == "pressure") value = data.beam_pressure + " Pa";
+				if (type == "alt") value = data.beam_alt + " Meters";
+				if (type == "rea_alt") value = data.beam_real_alt + " Meters";
+
+
 				message = message + ": " + value;
 				console.log(message);
 				tuwm.post(message+" @"+name, image_path, function(err, response) {

@@ -5,7 +5,8 @@
 
 import serial
 
-mac = '/dev/tty.usbserial-A603GDYK'
+#mac = '/dev/tty.usbserial-A603GDYK'
+#mac = '/dev/tty.usbmodem1411'
 rpi = '/dev/ttyUSB0'
 
 ser = serial.Serial(rpi, 115200)
@@ -14,7 +15,7 @@ nest_level = 0
 msg = ""
 data = {}
 
-while 'sensors' not in data:
+while 'data' not in data:
     char = ser.read()
     if ord(char) > 127 or ord(char) == 0: 
     	continue
@@ -28,3 +29,5 @@ while 'sensors' not in data:
             data = msg
 
 print data
+
+ser.close()
