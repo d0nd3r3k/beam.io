@@ -5,11 +5,11 @@ Control a Rasperry Pi connected to a Tidmarsh sensor node via serial ports. Deve
 
 ### Hastags
 
-+ #BeamIOCam : Will order the pi to capture and image and upload it to Twitter
-+ #BeamIOTemp : Will order the pi to capture an image and return the temperature
-+ #BeamIOHumidity : Will order the pi to capture an image and return the Humidity
-+ #BeamIOPressure : Will order the pi to capture an image and return the Pressure
-+ #BeamIOIlluminance : Will order the pi to capture an image and return the Illuminance
+. #BeamIOCam : Will order the pi to capture and image and upload it to Twitter
+. #BeamIOTemp : Will order the pi to capture an image and return the temperature
+. #BeamIOHumidity : Will order the pi to capture an image and return the Humidity
+. #BeamIOPressure : Will order the pi to capture an image and return the Pressure
+. #BeamIOIlluminance : Will order the pi to capture an image and return the Illuminance
 
 ### Configuration:
 
@@ -61,5 +61,3 @@ Permission is hereby granted, free of charge, to any person obtaining a copy of 
 The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 
 THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
-
-

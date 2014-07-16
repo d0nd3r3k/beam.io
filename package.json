@@ -6,24 +6,6 @@
     "name": "Donald Derek",
     "email": "donaldderek.haddad@gmail.com"
   },
-  "contributors": [
-    {
-      "name": "Spencer Russell",
-      "email": "spencer.f.russell@gmail.com"
-    },
-    {
-      "name": "Pragun Goyal",
-      "email": "pragun.goyal@gmail.com"
-    },
-    {
-      "name": "Sherif Mktb",
-      "email": "sherif.maktabi@gmail.com"
-    },
-    {
-      "name": "Donald Derek",
-      "email": "donaldderek.haddad@gmail.com"
-    }
-  ],
   "private": false,
   "scripts": {
     "start": "node app.js"
